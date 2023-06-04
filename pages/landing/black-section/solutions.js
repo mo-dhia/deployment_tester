@@ -51,7 +51,7 @@ export default function Services({ scroll, screen }) {
                 <div style={{
                     width: "40%", display: "flex", justifyContent: "center"
                 }}>
-                    <div style={{ marginTop: screen === "mobile" || screen.tablet ? "270px" : `150px` }}>
+                    <div style={{ marginTop: screen === "mobile" || screen === "tablet" ? "270px" : `150px` }}>
                         <h1 style={{ fontSize: "1.8em", fontWeight: "500", color: "gray" }}>Experience</h1>
                         <h1 style={{ fontSize: "2.02em", fontWeight: "500", color: "white" }}>Excellence</h1>
                         <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "50px" }}>
