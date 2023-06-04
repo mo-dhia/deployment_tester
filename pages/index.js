@@ -7,15 +7,13 @@ import BlackSection from "./landing/black-section/BlackSection"
 import { useState, useCallback, useEffect, useLayoutEffect } from "react"
 import { CustomCursor } from "@/sharedComponents/customCursor";
 import { mouseMove, mouseEnter, mouseLeave } from "../functions/mouse";
-import Hero from "./landing/hero";
+import Hero from "./landing/hero/hero";
 
 
 export default function Home() {
   const [screen, setScreen] = useState("mobile");
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [color, setBackground] = useState(0);
   const [activeMouse, setActiveMouse] = useState(true);
-  const background = ["#fae1ee", "#e0f0ff", "#ffede0", "#d3d6f0", "#ffeae0", "#f5f5f7"];
   const [menuClicked, setMenuClicked] = useState(false);
 
   const handleScroll = useCallback(() => { setScrollPosition(window.scrollY) }, []);
@@ -28,7 +26,6 @@ export default function Home() {
   useLayoutEffect(() => {
     const innerContainerRef = document.querySelector('.footer-inner-container');
     const mainContainer = document.querySelector('.main-container');
-
     mainContainer.addEventListener("mousemove", handleMouseMove);
 
     innerContainerRef.addEventListener("mouseenter", handleMouseEnter);
@@ -56,11 +53,13 @@ export default function Home() {
   }, [screen]);
   return (
     <Layout isClicked={menuClicked} setIsClicked={setMenuClicked} scroll={scrollPosition} setActiveMouse={setActiveMouse} screen={screen}>
-      <Hero />
+      <Hero screen={screen} scroll={scrollPosition} />
       <CustomCursor activeMouse={activeMouse} />
-      <Sections screen={screen} scroll={scrollPosition} color={color} setBackground={setBackground} />
-      <BlackSection screen={{ tablet: screen === "tablet", mobile: screen === "mobile" }} menuClicked={menuClicked} scroll={scrollPosition} />
-      <How screen={{ tablet: screen === "tablet", mobile: screen === "mobile" }} scroll={scrollPosition} />
+      <Sections screen={screen} scroll={scrollPosition} />
+      <BlackSection screen={screen} menuClicked={menuClicked} scroll={scrollPosition} />
+      <How screen={screen} scroll={scrollPosition} />
     </Layout>
+
+
   )
 }

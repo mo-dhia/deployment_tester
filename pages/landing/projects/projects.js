@@ -1,51 +1,9 @@
-const data = [
-    {
-        t1: "Beauty brand, e-commerce",
-        link: "Vimcosmo.com",
-        tags: ["Branding", " Website", " Design", " Development"],
-        img: "https://deveb.co/static/media/vim.2c5e9ce4.jpg",
-        border: "#fea5d3",
-        color: "#e985b4",
-        background: "#fae1ee"
-    }, {
-        t1: "Furniture brand, Online store",
-        link: "DopeGood.com",
-        tags: ["Branding", " Website", " Design", " Development"],
-        img: "https://deveb.co/static/media/newdopegood.6e57b4b4.jpg",
-        border: "#a6d4ff",
-        color: "#78a9d9",
-        background: "#e0f0ff"
-    }, {
-        t1: "Architectural design studio",
-        link: "AM-ARC.com",
-        tags: ["Branding", " Website", " Design", " Development"],
-        img: "https://deveb.co/static/media/am-arc.0bba8786.jpg",
-        border: "#f2ab79",
-        color: "#f2ab79",
-        background: "#ffede0"
-    }, {
-        t1: "NFT digital marketplace",
-        link: "Dopop.net",
-        tags: ["Branding", " Website", " Design", " Development"],
-        img: "https://deveb.co/static/media/dopop2.3974e9e7.jpg",
-        border: "#a6afff",
-        color: "#7781d9",
-        background: "#d3d6f0"
-    }, {
-        t1: "Furniture brand, e-commerce",
-        link: "Old.DopeGood.com",
-        tags: ["Branding", " Website", " Design", " Development"],
-        img: "https://deveb.co/static/media/dopegood.b2cad70d.jpg",
-        border: "#ffb18c",
-        color: "#ffb18c",
-        background: "#ffeae0"
-    },
-]
+import data from "@/data/landing/projects"
 
 import { useEffect, useCallback, useRef } from "react"
 import { projectMouseEnter, projectMouseLeave } from "../../../functions/mouse"
 
-export default function Sections({ screen, scroll, color, setBackground }) {
+export default function Sections({ screen, scroll }) {
     const container = useRef(null)
     const leftContainer = useRef(null)
     const rightContainer = useRef(null)
@@ -62,9 +20,7 @@ export default function Sections({ screen, scroll, color, setBackground }) {
         }
         if (screen !== "mobile") {
             const imgs = rightContainer.current.children
-
             if (!percentages.length && start >= scroll && imgs[0].style.clipPath !== "inset(0px 0px 0%)") {
-
                 imgs[0].style.clipPath = "inset(0px 0px 0%)"
             } else if (scroll >= end && imgs[imgs.length - 2].style.clipPath !== "inset(0px 0px 100%)") {
                 imgs[imgs.length - 2].style.clipPath = "inset(0px 0px 100%)"
@@ -81,10 +37,12 @@ export default function Sections({ screen, scroll, color, setBackground }) {
 
             if (index + 0.5 < ((v[1] * (data.length - 1)) / 100) && data[index + 1] && document.querySelector('html').style.background !== data[index + 1].background) {
                 document.querySelector('html').style.background = data[index + 1].background
+                document.getElementsByClassName("primary-cursor")[0].style.background = data[index + 1].color
+
             } else if (index + 0.5 > ((v[1] * (data.length - 1)) / 100) && document.querySelector('html').style.background !== data[index].background) {
                 document.querySelector('html').style.background = data[index].background
+                document.getElementsByClassName("primary-cursor")[0].style.background = data[index].color
             }
-
 
             const children = leftContainer.current.children
             for (let i = 0; children.length > i; i++) {
@@ -106,14 +64,19 @@ export default function Sections({ screen, scroll, color, setBackground }) {
             }
         }, [[0, ((data.length - 1) * (innerHeight * 0.9))], [0, 100]])
 
+        if ((container.current.offsetTop > scroll && document.getElementsByClassName("primary-cursor")[0].style.width !== "10px") || (container.current.offsetTop + container.current.clientHeight - (innerHeight * 0.4) >= scroll && container.current.offsetTop + container.current.clientHeight - innerHeight <= scroll)) {
+            document.getElementsByClassName("primary-cursor")[0].style.width = "10px"
+            document.getElementsByClassName("primary-cursor")[0].style.height = "10px"
+            document.getElementsByClassName("cursor-click")[0].textContent = ""
+        }
 
     }, [scroll]);
 
     const styles = {
-        veil: { height: "calc(100% + 150px)", width: "100%", position: "absolute", top: 0, zIndex: 50, pointerEvents: "none", opacity: 0, transition: "2s", background: "black" },
+        veil: { height: "calc(100% + 150px + 90vh)", width: "100%", position: "absolute", top: "-90vh", zIndex: 50, pointerEvents: "none", opacity: 0, transition: "2s", background: "black" },
         h1: { fontSize: "1.302rem", fontWeight: "500", textAlign: screen === "mobile" ? "center" : "left" },
         h2: { fontSize: "0.45rem", fontWeight: "300", textAlign: screen === "mobile" ? "center" : "left" },
-        btn_container: { width: "250px", marginLeft: "-25px", display: "flex", justifyContent: "center", alignItems: screen === "mobile" ? "start" : "center", top: screen === "mobile" ? "2vh" : 0, height: "150px", position: "relative", left: screen === "mobile" ? "60%" : 0, transform: screen === "mobile" ? "translateX(-50%)" : "none" },
+        btn_container: { width: "250px", marginLeft: "-25px", display: "flex", justifyContent: "center", alignItems: screen === "mobile" ? "start" : "center", top: screen === "mobile" ? "2vh" : 0, height: "150px", position: "relative", left: screen === "mobile" ? "50%" : "100px", transform: screen === "mobile" ? "translateX(-50%)" : "translateX((clamp(-100px, -10vw, -150px)))" },
         btn: { cursor: "pointer", position: "relative", overflow: "hidden", transition: "0.8s", fontSize: "0.48rem", width: "clamp(100px, 10vw, 150px)", height: "clamp(50px, 3vw, 55px)", borderRadius: "50px", background: "transparent" },
         btn_wrapper: { width: "100%", height: "100%", background: "black", color: "white", position: "absolute", transform: "translate(-50%,-50%)", top: "-50%", left: "50%", transition: "0.6s", borderRadius: "100%", pointerEvents: "none", zIndex: -1 },
         dark_btn: { transition: "1s", color: "black", position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)", width: "100%", },
@@ -127,7 +90,7 @@ export default function Sections({ screen, scroll, color, setBackground }) {
         left_child_wrapper: { width: screen === "tablet" ? "70%" : screen === "mobile" ? "100%" : "50%", float: "right", position: "relative", marginLeft: "50%", transform: "translateX(-50%)" },
         right_wrapper: { width: "50%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" },
         right_container: { width: "30vw", height: "30vw", position: "relative", gap: 0 },
-        img: { objectFit: "cover", width: "100%", height: "100%", position: "absolute", borderRadius: "50px" },
+        img: { cursor: "none", objectFit: "cover", width: "100%", height: "100%", position: "absolute", borderRadius: "50px" },
         left_img_container: { width: "80vw", height: "90vw", display: screen !== "mobile" ? "none" : "block" },
         left_img: { width: "100%", height: "90%", objectFit: "cover", borderRadius: "50px" }
     };
@@ -151,7 +114,7 @@ export default function Sections({ screen, scroll, color, setBackground }) {
                                             textAlign: screen === "mobile" ? "center" : "left"
                                         }}>Branding, Website, Design, Development</p>
                                         <div onMouseEnter={mousE} onMouseLeave={mouseL} className="project-container" style={styles.btn_container}>
-                                            <button style={{ ...styles.btn, border: `2px solid ${e.border}`, }}>
+                                            <button style={{ ...styles.btn, border: `${screen === "mobile" ? 2 : 1}px solid ${e.border}`, }}>
                                                 <div style={styles.btn_wrapper} />
                                                 <div style={styles.dark_btn}>View more</div>
                                                 <div style={styles.lignt_btn}>View more</div>
@@ -163,7 +126,55 @@ export default function Sections({ screen, scroll, color, setBackground }) {
                         </div>
 
                     </div>
-                    <div style={styles.right_wrapper}><div ref={rightContainer} style={styles.right_container}>{data.map((e, i) => <img key={i} style={{ ...styles.img, zIndex: 5 - i }} src={e.img} />)} </div> </div>
+                    <div style={styles.right_wrapper}><div ref={rightContainer} style={styles.right_container}>{data.map((e, i) => <img
+                        onMouseLeave={(event) => {
+                            //  console.log((i === data.length - 1 && !event.target.style.clipPath) || (i === 0 && event.target.style.clipPath === 'inset(0px 0px 0%)'))
+
+                            if ((i === data.length - 1 && !event.target.style.clipPath) || (i === 0 && event.target.style.clipPath === "inset(0px 0px 0%)")) {
+                                document.getElementsByClassName("primary-cursor")[0].style.width = "10px"
+                                document.getElementsByClassName("primary-cursor")[0].style.height = "10px"
+                                document.getElementsByClassName("primary-cursor")[0].style.opacity = 1
+                                document.getElementsByClassName("cursor-click")[0].textContent = ""
+                            } else {
+                                scrollTrigger(container, (v) => {
+                                    const index = parseInt(((v[1] * (data.length - 1)) / 100))
+
+                                    if (index + 0.5 < ((v[1] * (data.length - 1)) / 100) && data[index + 1] && document.querySelector('html').style.background !== data[index + 1].background) {
+                                        document.getElementsByClassName("primary-cursor")[0].style.background = data[index + 1].color
+                                    } else if (index + 0.5 > ((v[1] * (data.length - 1)) / 100) && document.querySelector('html').style.background !== data[index].background) {
+                                        document.getElementsByClassName("primary-cursor")[0].style.background = data[index].color
+                                    }
+                                    document.getElementsByClassName("primary-cursor")[0].style.width = "10px"
+                                    document.getElementsByClassName("primary-cursor")[0].style.height = "10px"
+                                    document.getElementsByClassName("primary-cursor")[0].style.opacity = 1
+                                    document.getElementsByClassName("cursor-click")[0].textContent = ""
+
+                                }, [[0, ((data.length - 1) * (innerHeight * 0.9))], [0, 100]])
+
+                            }
+                        }}
+                        onMouseEnter={() => {
+                            document.getElementsByClassName("cursor-click")[0].textContent = "Click"
+                            document.getElementsByClassName("primary-cursor")[0].style.background = e.color
+                            document.getElementsByClassName("primary-cursor")[0].style.width = "80px"
+                            document.getElementsByClassName("primary-cursor")[0].style.height = "80px"
+                            document.getElementsByClassName("primary-cursor")[0].style.opacity = 0.9
+                            document.getElementsByClassName("cursor-click")[0].textContent = "Click"
+                            document.getElementsByClassName("cursor-click")[0].style.color = "white"
+
+                        }} onMouseMove={() => {
+                            if (document.getElementsByClassName("primary-cursor")[0].style.height !== "80px") {
+                                document.getElementsByClassName("cursor-click")[0].textContent = "Click"
+                                document.getElementsByClassName("primary-cursor")[0].style.background = e.color
+                                document.getElementsByClassName("primary-cursor")[0].style.width = "80px"
+                                document.getElementsByClassName("primary-cursor")[0].style.height = "80px"
+                                document.getElementsByClassName("primary-cursor")[0].style.opacity = 0.9
+                                document.getElementsByClassName("cursor-click")[0].textContent = "Click"
+                                document.getElementsByClassName("cursor-click")[0].style.color = "white"
+
+                            }
+                        }}
+                        key={i} style={{ ...styles.img, zIndex: 5 - i }} src={e.img} />)} </div> </div>
                 </div>
             </div>
             <div className="veil" style={styles.veil} />

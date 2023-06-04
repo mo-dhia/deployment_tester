@@ -3,7 +3,7 @@ import About from './about'
 import Cards from './cards'
 import Catalogue from './catalogue'
 import MediaBand from './media-band'
-import Services from './services'
+import Services from './solutions'
 import Wow from './wow'
 
 export default function BlackSection({ screen, scroll, menuClicked }) {
@@ -13,13 +13,14 @@ export default function BlackSection({ screen, scroll, menuClicked }) {
         if (scroll >= container.current.offsetTop - innerHeight * 0.5 && veil.style.opacity == 0) {
             veil.style.opacity
             veil.style.opacity = 1
-
+            document.getElementsByClassName("primary-cursor")[0].style.background = "white"
             document.getElementsByClassName('header_lines_btn')[0].style.background = "white"
             document.getElementsByClassName('header_lines_btn')[1].style.background = "white"
             document.getElementsByClassName('quote')[0].style.backgroundImage = 'linear-gradient(312deg,#73ffa2, transparent 80%)'
             document.getElementsByClassName('logo')[0].src = 'https://cdn.discordapp.com/attachments/1073737355896299542/1110855539631595521/logo_blanc_ver.png'
         } else if (scroll <= container.current.offsetTop - innerHeight * 0.5 && veil.style.opacity == 1) {
             veil.style.opacity = 0
+            document.getElementsByClassName("primary-cursor")[0].style.background = "black"
             document.getElementsByClassName('header_lines_btn')[0].style.background = "black"
             document.getElementsByClassName('header_lines_btn')[1].style.background = "black"
             document.getElementsByClassName('quote')[0].style.backgroundImage = 'linear-gradient(to bottom right, transparent, #3398ff 80%)'
@@ -37,7 +38,6 @@ export default function BlackSection({ screen, scroll, menuClicked }) {
         const endIndex = containerBg.lastIndexOf(')');
         const numberString = containerBg.substring(startIndex, endIndex);
         const number = parseFloat(numberString);
-
         if (scroll >= start && scroll <= end) {
             if (document.getElementsByClassName('header_lines_btn')[0].style.background === "white" && menuClicked) {
                 document.getElementsByClassName('header_lines_btn')[0].style.background = "black"
@@ -61,9 +61,9 @@ export default function BlackSection({ screen, scroll, menuClicked }) {
         <div ref={container} style={{
             width: "100vw",
             background: "rgba(0, 0, 0, 1)",
-            borderRadius: screen.mobile ? "50px":"150px", 
+            borderRadius: screen === "mobile" ? "50px" : "150px",
             zIndex: 50,
-            paddingBottom: screen.mobile ? "50vh" : 0
+            paddingBottom: "50vh"
         }}>
             <About screen={screen} scroll={scroll} container={container} />
             <Catalogue screen={screen} scroll={scroll} />
