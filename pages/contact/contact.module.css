@@ -1,0 +1,161 @@
+.page {
+  /* background-color: black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 200vh; */
+  flex-direction: column;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  padding: 50px;
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.contactContainer {
+  margin-top: 100px;
+}
+
+.contactContainer h3 {
+  font-weight: 500;
+  font-size: larger;
+}
+
+.cerclescontainer {
+  background: transparent;
+  position: relative;
+  max-width: 700px;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  display: flex;
+  gap: 5px;
+  margin-bottom: 50px;
+}
+
+.contactForm {
+  /* background-color: #fff; */
+  position: relative;
+  max-height: 100vh;
+  max-width: 700px;
+  width: 100%;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  display: flex;
+  gap: 20px;
+  text-decoration: none;
+  /* font: ; */
+}
+
+.cercle:hover {
+  background-position: 0% 100%;
+}
+
+.contactForm input {
+  width: 300px;
+  border: none;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.attachement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.attachement button {
+  width: 200px;
+  height: 60px;
+  background: transparent;
+  border-radius: 17% 17% 17% 17% / 42% 42% 42% 42%;
+  cursor: pointer;
+  border-color: rgba(0, 0, 0, 0.486);
+  overflow: hidden;
+}
+
+.getin {
+  font-size: 35px;
+  margin-bottom: 8rem;
+  font-weight: lighter;
+  font-family: "Poppins", sans-serif;
+}
+
+.getin h1 {
+  font-weight: 500;
+}
+
+.budcont {
+  position: relative;
+  max-width: 700px;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  display: flex;
+  gap: 5px;
+  margin-bottom: 5rem;
+}
+
+.title {
+  /* margin-top: 20px; */
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 1000px) {
+  .getin {
+    font-size: 28px;
+    margin-bottom: 0rem;
+  }
+
+  .contactForm input {
+    width: 250px;
+  }
+
+  .attachement button {
+    width: 180px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 670px) {
+  .contactContainer {
+    height: 150vh;
+  }
+
+  .contactForm input {
+    width: 250px;
+  }
+
+  /* .cercle button{
+        max-width: 800px;
+    } */
+
+  .attachement button {
+    width: 180px;
+    height: 50px;
+  }
+}
+@media (max-width: 450px) {
+  .getin {
+    font-size: 18px;
+    margin-bottom: 0rem;
+  }
+}
+
+.contactForm input:focus {
+  outline: none;
+}

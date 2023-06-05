@@ -1,0 +1,9 @@
+.buttonsContainer{
+    position: relative;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 5px;
+    /* background-color: red; */
+}
+
