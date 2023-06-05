@@ -1,0 +1,110 @@
+.container  {
+    font-family: "IBM Plex Sans", sans-serif;
+    /* background:  linear-gradient(to bottom right, #FFFFFF, #FFCCE6); */
+    background:  linear-gradient(to bottom,white);
+    animation: fireAnimation 3s linear infinite alternate;
+    background-repeat: no-repeat;
+    width: 95%;
+    display:block;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    }
+    @keyframes fireAnimation {
+      0% {
+        background-position: 0% 0%;
+      }
+      25% {
+        background-position: 100% 0%;
+      }
+      50% {
+        background-position: 100% 100%;
+      }
+      75% {
+        background-position: 0% 100%;
+      }
+      100% {
+        background-position: 0% 0%;
+      }
+    }
+ .container h2 {
+    margin: 20px auto 80px;
+    font-size: 45px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 2px;
+    line-height: 1.5;
+    width: 500px;
+    color: #a8a8f9;
+  }
+  
+ .container  details {
+    width: 75%;
+    min-height: 5px;
+    max-width: 1000px;
+    padding: 45px 70px 45px 45px;
+    margin: 0 auto;
+    position: relative;
+    font-size: 22px;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 15px;
+    box-sizing: border-box;
+    transition: all .3s;
+ margin-bottom: 20px;
+  }
+  
+  .container details + details {
+    margin-top: 20px;
+  }
+  
+  .container details[open] {
+    min-height: 200px;
+    background: linear-gradient(to bottom right, #FFFFFF, #f0ebebda);
+  transition: 0.2s ease;
+    box-shadow: 2px 2px 20px rgba(0,0,0,.2);
+  }
+  
+  .container details p {
+    color: #96999d;
+    font-weight: 300;
+  }
+  
+  .container summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .container summary:focus {
+    outline: none;
+   
+  }
+  
+  
+  .container summary:hover  .control_icon_open {
+    transform: rotate(180deg);
+    background-color:#fff;
+    border-radius: 50%;
+  }
+  .container summary::-webkit-details-marker {
+    display: none
+  }
+  
+  .control_icon_open {
+    fill: rebeccapurple;
+    transition: 0.3s ease;
+    pointer-events: none;
+  }
+  
+ 
+  
+ 
+.container details:not([open]) summary .control_icon {
+    transform: rotate(0deg);
+ background: none;
+  }
