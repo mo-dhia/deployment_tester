@@ -1,15 +1,17 @@
-import  FirstSection  from "./firstSection";
+import FirstSection from "./firstSection";
 import styles from "../../styles/services.module.css"
 import Image from "next/image";
 import clouds from "../../assets/clouds.png"
-import  ThirdSection  from "./ThirdSection";
-import  FourthSection  from "./fourthSection";
-import {useRef,useEffect} from 'react'
+import ThirdSection from "./ThirdSection";
+import FourthSection from "./fourthSection";
+import { useLayoutEffect, useRef, useEffect, useState, useCallback } from 'react'
 import { gsap } from 'gsap'
 import img from "../../assets/web.png"
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Header from '../landing/layout/header/header'
-
+import { mouseMove, mouseEnter, mouseLeave } from "../../functions/mouse";
+import Layout from "../landing/layout/layout";
+import { CustomCursor } from "@/sharedComponents/customCursor";
 export default function services() {
   const [screen, setScreen] = useState("mobile");
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -33,8 +35,8 @@ export default function services() {
       window.innerWidth < 764
         ? "mobile"
         : window.innerWidth < 1112
-        ? "tablet"
-        : "desktop"
+          ? "tablet"
+          : "desktop"
     );
   }, []);
 
