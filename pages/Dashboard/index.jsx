@@ -73,6 +73,9 @@ const Dashboard = () => {
       // console.log(response.data)
       setBlogs(response.data)
     }
+    catch (error) {
+      alert('Error deleting blog:', error.message)
+    }
   }
 
   const addNewBlog = async () => {
@@ -107,9 +110,7 @@ const Dashboard = () => {
     } catch (error) {
       console.error("Error deleting blog:", error.message);
     }
-    catch (error) {
-      alert('Error deleting blog:', error.message)
-    }
+  
   }
   const updateBlog = async (id) => {
     let updatedData = {
