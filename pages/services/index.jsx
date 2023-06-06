@@ -1,17 +1,24 @@
 import FirstSection from "./firstSection";
-import styles from "../../styles/services.module.css"
+import styles from "../../styles/services.module.css";
 import Image from "next/image";
-import clouds from "../../assets/clouds.png"
+import clouds from "../../assets/clouds.png";
 import ThirdSection from "./ThirdSection";
 import FourthSection from "./fourthSection";
-import { useLayoutEffect, useRef, useEffect, useState, useCallback } from 'react'
-import { gsap } from 'gsap'
-import img from "../../assets/web.png"
-import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import Header from '../landing/layout/header/header'
-import { mouseMove, mouseEnter, mouseLeave } from "../../functions/mouse";
+import { gsap } from "gsap";
+import img from "../../assets/web.png";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import Layout from "../landing/layout/layout";
+
+import {
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+} from "react";
 import { CustomCursor } from "@/sharedComponents/customCursor";
+import { mouseMove, mouseEnter, mouseLeave } from "../../functions/mouse";
+
 export default function services() {
   const [screen, setScreen] = useState("mobile");
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -35,8 +42,8 @@ export default function services() {
       window.innerWidth < 764
         ? "mobile"
         : window.innerWidth < 1112
-          ? "tablet"
-          : "desktop"
+        ? "tablet"
+        : "desktop"
     );
   }, []);
 

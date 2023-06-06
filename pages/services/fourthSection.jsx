@@ -11,17 +11,22 @@ import sec from "../../assets/sec.svg";
 import first from "../../assets/first.svg";
 import e from "../../assets/e.png";
 
-import banner from "../../assets/banner5i.png"
-import marketing from "../../assets/marketing.png"
-import { gsap } from 'gsap'
-import img from "../../assets/web.png"
-import ScrollTrigger from 'gsap/dist/ScrollTrigger';
- const FourthSection = () => {
-const [pack,setpack]=useState({first:true,sec:false,last:false})
-const sectionRef = useRef(null);
-const [scroll,setscroll]=useState(undefined)
-const [click,setclick]=useState({first:false,sec:false,third:false,frth:false})
-const packs = useRef(null)
+import banner from "../../assets/banner5i.png";
+import marketing from "../../assets/marketing.png";
+import { gsap } from "gsap";
+import img from "../../assets/web.png";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+const FourthSection = () => {
+  const [pack, setpack] = useState({ first: true, sec: false, last: false });
+  const sectionRef = useRef(null);
+  const [scroll, setscroll] = useState(undefined);
+  const [click, setclick] = useState({
+    first: false,
+    sec: false,
+    third: false,
+    frth: false,
+  });
+  const packs = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -90,35 +95,19 @@ const packs = useRef(null)
           scrub: true,
         },
       });
-      timeline
-        .fromTo(
-          ".psycho",
-          {
-            bottom: -500,
-            right: -100,
-            scale: 1.6,
-            duration: 0.05,
-            opacity: 0,
-            ease: "none",
-          },
-          { top: 250, scale: 1.6, duration: 0.05, opacity: 0.2, ease: "none" },
-          "-=.1"
-        )
-        .fromTo(
-          `.first`,
-          { x: 2000, transition: "all ease 1s", delay: 2 },
-          { x: 0, delay: 1, transition: "all ease 1s" }
-        )
-        .fromTo(
-          `.third`,
-          { x: -2000, transition: "all ease 1s", delay: 1 },
-          { x: 0 }
-        )
-        .fromTo(
-          ".sec",
-          { y: 1000, opacity: 0 },
-          { y: 0, paddingTop: "10px", opacity: 1, transition: "all ease 1s" }
-        );
+      timeline.fromTo(
+        ".psycho",
+        {
+          bottom: -500,
+          right: -100,
+          scale: 1.6,
+          duration: 0.05,
+          opacity: 0,
+          ease: "none",
+        },
+        { top: 250, scale: 1.6, duration: 0.05, opacity: 0.2, ease: "none" },
+        "-=.1"
+      );
     }
 
     let mouse = {
@@ -340,6 +329,6 @@ const packs = useRef(null)
         </div>
       </div>
     </div>
-  )
-}
-export default FourthSection
+  );
+};
+export default FourthSection;
